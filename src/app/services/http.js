@@ -5,7 +5,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://mt.neshanid.io/auth/realms/levant/protocol/openid-connect",
+  // baseURL: "https://mt.neshanid.io/auth/realms/levant/protocol/openid-connect",
+  baseURL:'https://uat.kian.digital/api-proxy/v1/report',
 });
 
 const AxiosInterceptor = ({ children }) => {
