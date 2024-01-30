@@ -1,4 +1,8 @@
-import EnterToNeshan from "../components/EnterToNeshan/EnterToNeshan";
-export default function Login() {
-  return <EnterToNeshan />;
+import Login from '../components/Login/login'
+export default function LoginPage() {
+
+  return (<>
+      <Login/>
+      </>
+  )
 }

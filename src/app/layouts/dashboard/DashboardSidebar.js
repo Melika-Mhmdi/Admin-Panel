@@ -1,21 +1,29 @@
-'use client'
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 // material
 import { styled } from "@mui/material/styles";
 import {
   Box,
   Link,
+  Button,
   Drawer,
   Typography,
   Avatar,
   Stack,
 } from "@mui/material";
+// mock
+import account from "../../_mock/account";
+// hooks
+import useResponsive from "../../hooks/useResponsive";
+// components
+import Logo from "../../components/Logo";
+import Scrollbar from "../../components/Scrollbar";
+import NavSection from "../../components/NavSection";
+//
 import navConfig from "./NavConfig";
 import {useRouter} from "next/navigation";
-import useResponsive from "@/app/hooks/useResponsive";
-import Scrollbar from "@/app/components/Scrollbar";
-import NavSection from "@/app/components/NavSection";
 
+// ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
 
@@ -34,8 +42,15 @@ const AccountStyle = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.grey[500_12],
 }));
 
+// ----------------------------------------------------------------------
+
+DashboardSidebar.propTypes = {
+  isOpenSidebar: PropTypes.bool,
+  onCloseSidebar: PropTypes.func,
+};
+
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
-  const { pathname } = useRouter()
+  const { pathname } = useRouter();
 
   const isDesktop = useResponsive("up", "lg");
 
@@ -58,14 +73,15 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       }}
     >
       <Box sx={{ mb: 5, mx: 2.5, mt: 5 }}>
-        <Link underline="none" href="#">
+        <Link underline="none" component={Link} to="#">
           <AccountStyle>
+            <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-             sdfghujikop
+                {account.displayName}
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          retfyguhiop
+                {account.role}
               </Typography>
             </Box>
           </AccountStyle>

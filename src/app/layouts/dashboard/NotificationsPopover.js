@@ -22,9 +22,9 @@ import {
 // utils
 import { fToNow } from '../../utils/formatTime';
 // components
-import Iconify from '../../components/Iconify';
 import Scrollbar from '../../components/Scrollbar';
 import MenuPopover from '../../components/MenuPopover';
+import Iconify from "../../components/Iconify";
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: faker.name.findName(),
+    // title: faker?.name?.findName(),
     description: 'answered to your comment on the Minimal',
     avatar: '/static/mock-images/avatars/avatar_2.jpg',
     type: 'friend_interactive',

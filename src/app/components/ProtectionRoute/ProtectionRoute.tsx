@@ -3,13 +3,19 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ProtectedRoute({ children }: any) {
-  const token = localStorage.getItem("token");
+  let token: any =null;
+
+  if (typeof window !== "undefined") {
+     token = localStorage.getItem("token")||null
+  }
+
   const router = useRouter();
   useEffect(() => {
     if (!token) {
       router.push("/login");
     }
+    router.push("/dashboard/app");
   }, [token]);
 
-  return token ? <div>{children}</div> : <div>loading...</div>;
+  return token ? <>{children}</> : <>loading...</>;
 }

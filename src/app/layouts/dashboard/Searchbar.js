@@ -1,9 +1,10 @@
-import { useState } from 'react';
+'use client'
 // material
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material';
 // component
 import Iconify from '../../components/Iconify';
+import {useState} from "react";
 
 // ----------------------------------------------------------------------
 

@@ -5,8 +5,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 
 const instance = axios.create({
-  // baseURL: "https://mt.neshanid.io/auth/realms/levant/protocol/openid-connect",
-  baseURL:'https://uat.kian.digital/api-proxy/v1/report',
+  baseURL: "https://mt.neshanid.io/auth/realms/levant/protocol/openid-connect",
+  // baseURL:'https://uat.kian.digital/api-proxy/v1/report',
 });
 
 const AxiosInterceptor = ({ children }) => {
@@ -14,12 +14,11 @@ const AxiosInterceptor = ({ children }) => {
 
   useEffect(() => {
     const resInterceptor = (response) => {
-      console.log("tttt");
       return response;
     };
     const errInterceptor = (error) => {
       if (!error.response) {
-        dispatch(messageHandling(error));
+        // dispatch(messageHandling(error));
       }
       //   dispatch(messageHandling(error.response));
       if (error.response.status === 401) {
@@ -29,8 +28,6 @@ const AxiosInterceptor = ({ children }) => {
       } else if (error.response.status === 403) {
         // dispatch(messageHandling(error.response));
       }
-
-      console.log(error);
 
       return Promise.reject(error);
     };

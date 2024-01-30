@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import {  matchPath, useLocation } from 'react-router-dom';
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
-import {useRouter} from "next/navigation";
+import {Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton, Link} from '@mui/material';
 //
+import Iconify from './Iconify';
+import {usePathname, useRouter} from "next/navigation";
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +27,13 @@ const ListItemIconStyle = styled(ListItemIcon)({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+// ----------------------------------------------------------------------
+
+NavItem.propTypes = {
+  item: PropTypes.object,
+  active: PropTypes.func,
+};
 
 function NavItem({ item, active }) {
   const theme = useTheme();
@@ -61,6 +71,10 @@ function NavItem({ item, active }) {
           <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
           <ListItemText disableTypography primary={title} />
           {info && info}
+          <Iconify
+            icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
+            sx={{ width: 16, height: 16, ml: 1 }}
+          />
         </ListItemStyle>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
@@ -72,6 +86,7 @@ function NavItem({ item, active }) {
               return (
                 <ListItemStyle
                   key={title}
+                  component={NavLink}
                   to={path}
                   sx={{
                     ...(isActiveSub && activeSubStyle),
@@ -87,6 +102,7 @@ function NavItem({ item, active }) {
                         borderRadius: '50%',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        bgcolor: 'text.disabled',
                         transition: (theme) => theme.transitions.create('transform'),
                         ...(isActiveSub && {
                           transform: 'scale(2)',
@@ -107,6 +123,7 @@ function NavItem({ item, active }) {
 
   return (
     <ListItemStyle
+      component={Link}
       to={path}
       sx={{
         ...(isActiveRoot && activeRootStyle),
@@ -119,16 +136,23 @@ function NavItem({ item, active }) {
   );
 }
 
-export default function NavSection({ navConfig, ...other }) {
-  const { pathname } = useRouter();
+NavSection.propTypes = {
+  navConfig: PropTypes.array,
+};
 
-  const match = (path) => (path ? true : false);
+export default function NavSection({ navConfig, ...other }) {
+  const pathname = usePathname();
+
+
+  const match = (path) => {
+    console.log(path,pathname);
+    return(path ? !!matchPath({ path, end: false }, pathname) : false);
+  }
 
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
         {navConfig.map((item) => (
-            /////////todo
           <NavItem key={item.title} item={item} active={match} />
         ))}
       </List>

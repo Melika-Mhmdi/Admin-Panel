@@ -1,7 +1,6 @@
 'use client'
 // material
 import { styled } from '@mui/material/styles';
-import DashboardSidebar from "@/app/layouts/dashboard/DashboardSidebar";
 // components
 
 // ----------------------------------------------------------------------
@@ -22,11 +21,8 @@ const HeaderStyle = styled('header')(({ theme }) => ({
 
 export default function LogoOnlyLayout({children}) {
   return (
-    <div>
-      <HeaderStyle>
+    <>
         {children}
-      </HeaderStyle>
-      <DashboardSidebar/>
-    </div>
+    </>
   );
 }

@@ -1,10 +1,13 @@
+'use client'
 import { useRef, useState } from 'react';
+
 // @mui
 import { alpha } from '@mui/material/styles';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
+import {Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Link} from '@mui/material';
 // components
+import MenuPopover from '../../components/MenuPopover';
 // mocks_
-import account from '../../_mock/account';
+import account from '../../_mock/account'
 
 // ----------------------------------------------------------------------
 
@@ -91,7 +94,7 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} to={option.linkTo} component={RouterLink} onClick={handleClose}>
+            <MenuItem key={option.label} to={option.linkTo} component={Link} onClick={handleClose}>
               {option.label}
             </MenuItem>
           ))}

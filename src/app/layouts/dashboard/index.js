@@ -1,5 +1,5 @@
+"use client"
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 //
@@ -32,13 +32,13 @@ const MainStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function DashboardLayout() {
+export default function DashboardLayout({children}) {
   const [open, setOpen] = useState(false);
 
   return (
     <RootStyle>
       <MainStyle>
-        <Outlet />
+        {children}
       </MainStyle>
       <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
       <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />

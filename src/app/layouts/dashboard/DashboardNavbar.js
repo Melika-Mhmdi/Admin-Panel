@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { alpha, styled } from "@mui/material/styles";
 import { Box, Stack, AppBar, Toolbar, IconButton } from "@mui/material";
 // components
-import Iconify from "../../components/Iconify";
 //
 import Searchbar from "./Searchbar";
 import AccountPopover from "./AccountPopover";
 import LanguagePopover from "./LanguagePopover";
 import NotificationsPopover from "./NotificationsPopover";
+import Iconify from "../../components/Iconify";
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           onClick={onOpenSidebar}
           sx={{ mr: 1, color: "text.primary", display: { lg: "none" } }}
         >
-          <Iconify icon="eva:menu-2-fill" />
+          <x icon="eva:menu-2-fill" />
         </IconButton>
 
         <Searchbar />
