@@ -2,6 +2,7 @@
 import Modal from '@mui/material/Modal';
 import s from "./login.module.scss"
 import useEnterToNeshan from "../../hooks/useEnterToNeshan";
+import Loading from "../Loading/Loading"
 export default function Login() {
     const {openNeshanPopup,visible} = useEnterToNeshan()
     const renderWaitingModal = () => (
@@ -10,7 +11,7 @@ export default function Login() {
         >
             <div className={s.modalForWaiting}>
                 <div className={s.loading}>
-                    loading...
+                   <Loading/>
                 </div>
                 <div className={s.main}>
                     <div className={s.title}>در حال انتقال به داشبورد</div>

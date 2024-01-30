@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Loading from "../Loading/Loading"
 
 export default function ProtectedRoute({ children }: any) {
   let token: any =null;
@@ -10,12 +11,19 @@ export default function ProtectedRoute({ children }: any) {
   }
 
   const router = useRouter();
+
   useEffect(() => {
-    if (!token) {
+    if (token === null) {
+      console.log(token)
       router.push("/login");
     }
-    router.push("/dashboard/app");
+    else {router.push("/dashboard/app");}
   }, [token]);
 
-  return token ? <>{children}</> : <>loading...</>;
+  if (token === null){
+    return <Loading/>
+  }else {
+    return<>{children}</>
+  }
+
 }

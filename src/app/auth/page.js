@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { getToken } from "../actions/getToken";
 import { useEffect, useState } from "react";
 import useEnterToNeshan from "../hooks/useEnterToNeshan";
+import Loading from "../components/Loading/Loading";
 
 export default function Auth() {
   const searchParams = useSearchParams();
@@ -21,5 +22,5 @@ export default function Auth() {
       });
   }, []);
 
-  return <div>loading...</div>;
+  return <Loading/>;
 }
